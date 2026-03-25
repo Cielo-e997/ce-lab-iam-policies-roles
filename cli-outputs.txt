@@ -1,0 +1,34 @@
+# AWS CLI Outputs
+
+## S3 Upload Test
+
+Command:
+aws s3 cp test.txt s3://ce-demo-01/
+
+Output:
+upload: ./test.txt to s3://ce-demo-01/test.txt
+
+---
+
+## Get Role
+
+Command:
+aws iam get-role --role-name EC2-S3-ReadOnly-Role
+
+Output:
+{
+    "Role": {
+        "RoleName": "EC2-S3-ReadOnly-Role",
+        "Arn": "arn:aws:iam::170638199494:role/EC2-S3-ReadOnly-Role"
+    }
+}
+
+---
+
+## Simulate Principal Policy
+
+Command:
+aws iam simulate-principal-policy --policy-source-arn arn:aws:iam::170638199494:user/test-developer --action-names s3:GetObject --resource-arns arn:aws:s3:::ce-demo-01/test.txt
+
+Output:
+An error occurred (NoSuchEntity) when calling the SimulatePrincipalPolicy operation: Unable to retrieve specified IAM entity.
